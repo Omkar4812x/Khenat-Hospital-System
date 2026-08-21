@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khenat Hospital — Waiting Lounge Live OPD Token Display</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@700;800&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b1329;
+    --card: #152243;
+    --border: rgba(255, 255, 255, 0.12);
+    --primary: #38bdf8;
+    --green: #10b981;
+    --gold: #f59e0b;
+    --text: #ffffff;
+    --muted: #94a3b8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+  header {
+    background: #060d1f;
+    border-bottom: 2px solid var(--border);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .hospital-brand h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin: 0;
+  }
+  .hospital-brand p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--primary);
+    margin: 4px 0 0;
+  }
+  .live-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green);
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    padding: 8px 18px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .live-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--green);
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.7; }
+  }
+
+  main {
+    flex: 1;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+  }
+  @media(max-width: 1024px) {
+    main { grid-template-columns: 1fr; }
+  }
+
+  .now-calling-card {
+    background: linear-gradient(135deg, #152243 0%, #0f1933 100%);
+    border: 2px solid var(--primary);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .calling-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .token-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 20px 0;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+  }
+  .patient-details h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin: 0 0 10px;
+  }
+  .doctor-assigned {
+    font-size: 1.2rem;
+    color: var(--primary);
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 10px 18px;
+    border-radius: 12px;
+    display: inline-block;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+
+  .queue-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+  }
+  .queue-panel h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin: 0 0 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .queue-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+  }
+  .queue-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .queue-token {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--primary);
+  }
+  .queue-name {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #ffffff;
+  }
+  .queue-doctor {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer {
+    background: #060d1f;
+    border-top: 1px solid var(--border);
+    padding: 16px 40px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hospital-brand">
+    <h1>Khenat Hospital &amp; Prastuti Gruha</h1>
+    <p>LIVE OPD WAITING LOUNGE TOKEN DISPLAY — KARVENAGAR, PUNE</p>
+  </div>
+  <div class="live-badge">
+    <span class="live-dot"></span> LIVE QUEUE UPDATING
+  </div>
+</header>
+
+<main>
+  <div class="now-calling-card" id="nowCallingCard">
+    <div>
+      <div class="calling-label">🔔 NOW CALLING TO DOCTOR CABINET</div>
+      <div class="token-num" id="currentCallToken">#LOAD...</div>
+      <div class="patient-details">
+        <h2 id="currentCallName">Loading Next Patient...</h2>
+        <div class="doctor-assigned" id="currentCallDoctor">Please wait for cabin assignment</div>
+      </div>
+    </div>
+    <div style="font-size:0.95rem;color:var(--muted);margin-top:30px;">
+      📍 Please report to the reception desk or assigned doctor cabinet when your token is called.
+    </div>
+  </div>
+
+  <div class="queue-panel">
+    <h3>Upcoming OPD Queue</h3>
+    <div class="queue-list" id="upcomingQueue">
+      <div style="color:var(--muted);text-align:center;padding:40px 0;">Fetching live queue...</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Khenat Hospital &amp; Prastuti Gruha • Emergency Hotline: (020) 25448451 / +91-9823425152 • 24/7 Maternity &amp; OPD
+</footer>
+
+<script>
+  const API_BASE = 'http://localhost:5000';
+
+  async function fetchQueue() {
+    try {
+      const res = await fetch(API_BASE + '/api/appointments');
+      if (!res.ok) return;
+      const data = await res.json();
+      const appointments = data.appointments || [];
+
+      const confirmed = appointments.filter(a => a.status === 'Confirmed');
+      const pending = appointments.filter(a => a.status === 'Pending');
+      const allActive = [...confirmed, ...pending];
+
+      if (allActive.length > 0) {
+        const top = allActive[0];
+        document.getElementById('currentCallToken').textContent = '#' + (top.bookingId || top.id);
+        document.getElementById('currentCallName').textContent = top.name;
+        document.getElementById('currentCallDoctor').textContent = '👉 Proceed to: ' + top.reason;
+
+        const queueContainer = document.getElementById('upcomingQueue');
+        const rest = allActive.slice(1, 8);
+
+        if (rest.length === 0) {
+          queueContainer.innerHTML = '<div style="color:var(--muted);text-align:center;padding:40px 0;">No further patients in waiting line.</div>';
+        } else {
+          queueContainer.innerHTML = rest.map(item => `
+            <div class="queue-item">
+              <div>
+                <div class="queue-token">#${item.bookingId || item.id}</div>
+                <div class="queue-name">${item.name}</div>
+              </div>
+              <div class="queue-doctor">${item.reason}</div>
+            </div>
+          `).join('');
+        }
+      } else {
+        document.getElementById('currentCallToken').textContent = 'OPD READY';
+        document.getElementById('currentCallName').textContent = 'No Patients in Queue';
+        document.getElementById('currentCallDoctor').textContent = 'OPD Cabinets Available';
+        document.getElementById('upcomingQueue').innerHTML = '<div style="color:var(--muted);text-align:center;padding:40px 0;">All appointments cleared.</div>';
+      }
+    } catch (err) {
+      console.error('Queue fetch error:', err);
+    }
+  }
+
+  fetchQueue();
+  setInterval(fetchQueue, 5000);
+</script>
+
+</body>
+</html>

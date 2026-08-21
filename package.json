@@ -1,0 +1,18 @@
+{
+  "name": "khenat-hospital",
+  "version": "1.0.0",
+  "description": "Khenat Hospital & Prastuti Gruha Full-Stack Web Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "hospital",
+    "opd",
+    "healthcare",
+    "maternity"
+  ],
+  "author": "Khenat Hospital Pune",
+  "license": "ISC"
+}

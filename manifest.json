@@ -1,0 +1,16 @@
+{
+  "name": "Khenat Hospital & Prastuti Gruha",
+  "short_name": "Khenat OPD",
+  "description": "Hospital Staff Admin & Patient OPD Booking Management System",
+  "start_url": "./khenat-hospital-admin.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0284c7",
+  "icons": [
+    {
+      "src": "assets/dr_khenat_portrait.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

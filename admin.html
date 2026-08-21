@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khenat Hospital &amp; Prastuti Gruha — Hospital Management System &amp; OPD Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+
+<!-- HMS SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo-icon">KH</div>
+    <div>
+      <h2>Khenat Hospital</h2>
+      <span>&amp; Prastuti Gruha</span>
+    </div>
+  </div>
+
+  <div class="sidebar-menu">
+    <a href="#" class="sidebar-item active">📊 OPD Queue Dashboard</a>
+    <a href="#roster" class="sidebar-item">👨‍⚕️ Doctor Duty Roster</a>
+    <a href="khenat-hospital-token-display.html" target="_blank" class="sidebar-item">📺 Waiting Lounge TV</a>
+    <a href="index.html" class="sidebar-item">🌐 Patient Web Portal</a>
+  </div>
+
+  <div class="sidebar-footer">
+    <strong>Khenat Hospital HMS v2.4</strong><br>
+    Karvenagar, Pune 411052<br>
+    Helpline: (020) 25448451
+  </div>
+</aside>
+
+<!-- MAIN CONTENT WRAPPER -->
+<div class="main-wrapper">
+  
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <div class="top-header-left">
+      <h1>OPD Queue &amp; Patient Administration</h1>
+      <div class="hms-badge">
+        <span class="dot"></span> RECEPTION DESK LIVE
+      </div>
+    </div>
+
+    <div class="top-header-actions">
+      <a href="khenat-hospital-token-display.html" target="_blank" class="header-btn">📺 Open Waiting Room TV</a>
+      <a href="index.html" class="header-btn">🌐 Live Patient Website →</a>
+    </div>
+  </header>
+
+  <!-- BODY CONTENT -->
+  <div class="content-body">
+    
+    <!-- STATS CARDS GRID -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num" id="statTotal">–</div>
+        <div class="stat-label">TOTAL BOOKINGS</div>
+      </div>
+      <div class="stat-card stat-pending">
+        <div class="stat-num" id="statPending" style="color:var(--pending);">–</div>
+        <div class="stat-label">PENDING APPROVAL</div>
+      </div>
+      <div class="stat-card stat-confirmed">
+        <div class="stat-num" id="statConfirmed" style="color:var(--confirmed);">–</div>
+        <div class="stat-label">CONFIRMED OPD</div>
+      </div>
+      <div class="stat-card stat-today">
+        <div class="stat-num" id="statToday" style="color:var(--primary-dark);">–</div>
+        <div class="stat-label">REQUESTED TODAY</div>
+      </div>
+      <div class="stat-card stat-khenat">
+        <div class="stat-num" id="statKhenat" style="color:#8b5cf6;">–</div>
+        <div class="stat-label">DR. KHENAT OPD</div>
+      </div>
+      <div class="stat-card stat-kabir">
+        <div class="stat-num" id="statKabir" style="color:#ec4899;">–</div>
+        <div class="stat-label">DR. KABIR SURGERY</div>
+      </div>
+    </div>
+
+    <!-- DOCTOR DUTY ROSTER -->
+    <div class="section-header-title" id="roster">👨‍⚕️ Resident Doctor OPD Duty Roster</div>
+    <div class="doctors-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+      <div class="doctor-roster-card">
+        <span class="duty-pill">🟢 ON DUTY</span>
+        <div class="doctor-img-wrap">
+          <img src="assets/dr_khenat_portrait.png" alt="Dr. Narendra Murlidhar Khenat" />
+        </div>
+        <div class="doctor-info-wrap">
+          <h4>Dr. Narendra Murlidhar Khenat</h4>
+          <div class="spec">Senior OPD Director &amp; General Physician</div>
+          <div class="timing">🕒 Mon – Sun: 9:00 AM – 1:30 PM | 5:00 PM – 9:00 PM</div>
+        </div>
+      </div>
+
+      <div class="doctor-roster-card">
+        <span class="duty-pill">🟢 ON DUTY</span>
+        <div class="doctor-img-wrap">
+          <img src="assets/dr_kabir_portrait.png" alt="Dr. Kabir Narendra Khenat" />
+        </div>
+        <div class="doctor-info-wrap">
+          <h4>Dr. Kabir Narendra Khenat</h4>
+          <div class="spec">General Physician &amp; Minor Surgery Specialist</div>
+          <div class="timing">🕒 Mon – Sat: 10:00 AM – 2:00 PM | 6:00 PM – 9:30 PM</div>
+        </div>
+      </div>
+
+      <div class="doctor-roster-card">
+        <span class="duty-pill">🟢 ON DUTY</span>
+        <div class="doctor-img-wrap">
+          <img src="assets/Dr.Sangita_Khenat.jpeg" alt="Dr. Sangita Narendra Khenat" style="object-fit:cover;object-position:center top;" />
+        </div>
+        <div class="doctor-info-wrap">
+          <h4>Dr. Sangita Narendra Khenat</h4>
+          <div class="spec">Obstetrician &amp; Gynaecologist (Prastuti Gruha)</div>
+          <div class="timing">🕒 Mon – Sat: 10:30 AM – 1:30 PM | 5:30 PM – 8:30 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOLBAR CONTROLS & FILTERS -->
+    <div class="toolbar-card">
+      <div class="toolbar-filters-grid">
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search patient name, phone, email, booking ID..." />
+        </div>
+
+        <div>
+          <select id="filterDoctor" class="filter-control">
+            <option value="all">All Doctors &amp; Departments</option>
+            <option value="Narendra">Dr. Narendra Murlidhar Khenat (OPD Director)</option>
+            <option value="Kabir">Dr. Kabir Narendra Khenat (Minor Surgery &amp; Wound Care)</option>
+            <option value="Sangita">Dr. Sangita Narendra Khenat (Prastuti Gruha Maternity)</option>
+            <option value="Pediatrics">Pediatrics &amp; Child Care</option>
+            <option value="Emergency">Emergency Visit</option>
+          </select>
+        </div>
+
+        <div>
+          <select id="filterShift" class="filter-control">
+            <option value="all">All OPD Time Shifts</option>
+            <option value="morning">Morning OPD (9 AM – 1:30 PM)</option>
+            <option value="evening">Evening OPD (5 PM – 9:30 PM)</option>
+            <option value="emergency">Emergency / 24 Hours</option>
+          </select>
+        </div>
+
+        <div>
+          <input type="date" id="filterDate" class="filter-date-input" title="Filter by appointment date" />
+        </div>
+      </div>
+
+      <div class="toolbar-actions-row">
+        <div class="quick-filter-pills">
+          <button class="pill-tab active" onclick="setQuickFilter('all', this)">All Patients</button>
+          <button class="pill-tab" onclick="setQuickFilter('today', this)">📅 Today's Queue</button>
+          <button class="pill-tab" onclick="setQuickFilter('Pending', this)">⏳ Pending Only</button>
+          <button class="pill-tab" onclick="setQuickFilter('Confirmed', this)">✓ Confirmed Only</button>
+          <button class="pill-tab" onclick="setQuickFilter('Completed', this)">💙 Completed</button>
+          <button class="pill-tab" onclick="clearAllFilters()" style="background:#fee2e2;color:#dc2626;">↻ Reset Filters</button>
+        </div>
+
+        <div class="btn-group">
+          <label style="display:flex; align-items:center; gap:6px; font-size:0.85rem; color:var(--text-soft); cursor:pointer; background:#f8fafc; padding:8px 14px; border-radius:8px; border:1px solid var(--border-dark);">
+            <input type="checkbox" id="autoPollToggle" onchange="toggleAutoPoll(this.checked)" checked />
+            ⚡ Auto-Refresh (15s)
+          </label>
+          <button class="btn-action btn-action-walkin" onclick="openWalkinModal()">➕ Register Walk-in Patient</button>
+          <button class="btn-action" onclick="exportToCSV()" style="border-color:#0284c7; color:#0284c7;">📥 Export CSV</button>
+          <button class="btn-action btn-action-primary" id="refreshBtn">↻ Refresh</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPOINTMENTS TABLE -->
+    <div id="content">
+      <div class="state-loading">Loading live patient OPD schedule…</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PRINT OPD SLIP MODAL -->
+<div class="modal-backdrop" id="receiptModal">
+  <div class="modal-box">
+    <div class="receipt-header">
+      <h3>Khenat Hospital &amp; Prastuti Gruha</h3>
+      <p>Sai Housing Society, Karve Nagar Rd, Karvenagar, Pune 411052<br>Ph: (020) 25448451 / +91-9823425152</p>
+      <h4 style="margin-top:10px;color:#0284c7;font-family:'JetBrains Mono',monospace;">OPD CONSULTATION SLIP</h4>
+    </div>
+    <div class="receipt-body" id="receiptBody">
+      <!-- Dynamic Receipt Details -->
+    </div>
+    <div class="receipt-actions">
+      <button class="btn-print-action" onclick="window.print()">🖨️ Print OPD Slip</button>
+      <button class="btn-close-action" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- DOCTOR PRESCRIPTION & NOTES MODAL -->
+<div class="modal-backdrop" id="rxModal">
+  <div class="modal-box" style="max-width:540px;">
+    <h3 style="color:#0c4a6e;margin-bottom:6px;">💊 Doctor Prescription &amp; Clinical Notes</h3>
+    <p style="color:#64748b;font-size:0.88rem;margin-bottom:20px;" id="rxModalSub">Enter medical diagnosis, rx medicines, or follow-up instructions.</p>
+    
+    <input type="hidden" id="rxAppId" />
+    <div class="form-group">
+      <label for="rxInputNotes">Prescription / Clinical Notes</label>
+      <textarea id="rxInputNotes" class="form-control" rows="5" placeholder="e.g. Tab Paracetamol 500mg BD x 3 days&#10;Tab Amoxicillin 500mg TDS x 5 days&#10;Follow up after 5 days."></textarea>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:20px;">
+      <button type="button" class="btn-action btn-action-primary" onclick="saveRxNotes()" style="flex:1;">Save Rx Notes</button>
+      <button type="button" class="btn-action" onclick="closeRxModal()" style="background:#f1f5f9;color:#334155;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTER WALK-IN PATIENT MODAL -->
+<div class="modal-backdrop" id="walkinModal">
+  <div class="modal-box" style="max-width:500px;">
+    <h3 style="color:#0c4a6e;margin-bottom:6px;">➕ Register Walk-in OPD Patient</h3>
+    <p style="color:#64748b;font-size:0.88rem;margin-bottom:20px;">Direct desk entry into the live hospital queue.</p>
+    
+    <form id="walkinForm" onsubmit="handleWalkinSubmit(event)">
+      <div class="form-group">
+        <label for="walkinName">Patient Full Name *</label>
+        <input type="text" id="walkinName" class="form-control" placeholder="e.g. Anand Deshmukh" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="walkinPhone">Mobile Phone Number *</label>
+        <input type="tel" id="walkinPhone" class="form-control" placeholder="e.g. 9876543210" pattern="^[0-9]{10}$" required />
+      </div>
+
+      <div class="form-group">
+        <label for="walkinEmail">Patient Email Address (Optional)</label>
+        <input type="email" id="walkinEmail" class="form-control" placeholder="e.g. patient@example.com" />
+      </div>
+
+      <div class="form-group">
+        <label for="walkinReason">Specialty / Doctor *</label>
+        <select id="walkinReason" class="form-control" required>
+          <option value="">-- Select Doctor / Department --</option>
+          <option value="General OPD Consultation (Dr. Narendra Murlidhar Khenat)">General OPD Consultation (Dr. Narendra Murlidhar Khenat)</option>
+          <option value="Wound Care & Stitches (Dr. Kabir Narendra Khenat)">Wound Care &amp; Stitches (Dr. Kabir Narendra Khenat)</option>
+          <option value="Obstetrics & Gynaecology (Dr. Sangita Narendra Khenat)">Obstetrics &amp; Gynaecology (Dr. Sangita Narendra Khenat)</option>
+          <option value="Pediatrics & Vaccination">Pediatrics &amp; Vaccination</option>
+          <option value="Emergency Visit">Emergency Visit</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="walkinDate">Scheduled Slot *</label>
+        <input type="datetime-local" id="walkinDate" class="form-control" required />
+      </div>
+
+      <div style="display:flex;gap:12px;margin-top:24px;">
+        <button type="submit" class="btn-action btn-action-primary" style="flex:1;">Confirm Registration</button>
+        <button type="button" class="btn-action" onclick="closeWalkinModal()" style="background:#f1f5f9;color:#334155;">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="admin-script.js"></script>
+</body>
+</html>
