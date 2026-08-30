@@ -1,74 +1,57 @@
-# Khenat Hospital — Local Booking Backend
+# 🏥 Khenat Hospital Management & Token Queue System
 
-Real appointment storage using your local MySQL, so bookings made on the
-landing page actually show up on the admin dashboard.
+> **Full-stack healthcare management web system featuring online patient appointments, digital OPD token queue display, doctor administration portal, and Node.js backend.**
 
-## 1. Create the database
+---
 
-Open MySQL (Workbench, phpMyAdmin, or terminal) and run everything inside
-`schema.sql`. Easiest via terminal:
+## ✨ Features
 
-```bash
-mysql -u root -p < schema.sql
-```
+- 🏥 **Patient Portal & Appointment Booking** (`index.html`)
+  - Patients can browse medical departments, book OPD appointments, select doctors, and view available time slots.
 
-This creates a `khenat_hospital` database with one `appointments` table.
+- 📺 **Live Digital Token Queue Display Board** (`khenat-hospital-token-display.html`)
+  - Real-time OPD token status display for hospital waiting rooms, updating active tokens dynamically.
 
-## 2. Install Python dependencies
+- 👨‍⚕️ **Doctor & Admin Management Console** (`admin.html`)
+  - Doctor dashboard to manage appointments, issue OPD tokens, update patient medical logs, and manage hospital capacity.
 
-```bash
-cd backend
-pip install -r requirements.txt
-```
+- ⚙️ **Node.js Express Server & JSON DB** (`server.js`)
+  - Lightweight REST API server providing patient booking, token queue management, and file-based data persistence (`khenat_hospital_db.json`).
 
-## 3. Set your MySQL password
+---
 
-Open `app.py` and edit this block near the top with your local MySQL
-username/password:
+## 🛠️ Tech Stack
 
-```python
-DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "",   # <-- your MySQL password goes here
-    "database": "khenat_hospital",
-}
-```
+- **Frontend**: HTML5, Vanilla JavaScript (ES6+), CSS3 (Flexbox/Grid, CSS Variables), PWA Manifest
+- **Backend**: Node.js, Express.js, File-based JSON DB
 
-## 4. Run the server
+---
 
-```bash
-python app.py
-```
+## 🚀 Getting Started
 
-You should see it running at `http://localhost:5000`. Leave this terminal
-open — it needs to keep running while you use the website.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Omkar4812x/Khenat-Hospital-System.git
+   cd Khenat-Hospital-System
+   ```
 
-## 5. Open the website
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-Just double-click `khenat-hospital-landing.html` to open it in your
-browser (or right-click → Open with → your browser). Same for
-`khenat-hospital-admin.html`.
+3. **Start Backend Server**:
+   ```bash
+   npm start
+   ```
 
-- Book an appointment on the landing page → it's saved to MySQL.
-- Open the admin dashboard (or hit "↻ Refresh") → you'll see it there,
-  with buttons to mark it Confirmed / Completed / Cancelled.
+4. **Access Applications**:
+   - Patient Portal: `http://localhost:3000`
+   - Admin Console: `http://localhost:3000/admin.html`
+   - Token Display Board: `http://localhost:3000/khenat-hospital-token-display.html`
 
-## API reference (for later, e.g. if you deploy this)
+---
 
-| Method | Endpoint                      | Purpose                     |
-|--------|--------------------------------|------------------------------|
-| GET    | `/api/appointments`            | List all appointments        |
-| POST   | `/api/appointments`            | Create a new appointment     |
-| PATCH  | `/api/appointments/<id>`       | Update an appointment status |
-| GET    | `/api/health`                  | Check the server is running  |
+## 📄 License
 
-## Troubleshooting
-
-- **"Could not connect to MySQL"** — check MySQL is running, and that the
-  username/password in `DB_CONFIG` are correct.
-- **Bookings still not appearing** — make sure `python app.py` is running
-  in a terminal the whole time you're testing, and that both HTML files
-  are pointing at `http://localhost:5000` (they are, by default).
-- **CORS error in browser console** — confirm `flask-cors` installed
-  correctly (`pip install flask-cors`) and restart the server.
+Distributed under the MIT License.
